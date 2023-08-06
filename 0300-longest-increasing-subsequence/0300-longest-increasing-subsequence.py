@@ -17,7 +17,7 @@ class SolutionDP:
         lis = [1] * n   # smallest sequence at each point is 1
 
         for i in range(n-1,-1,-1): # work backwards updating lis
-            for j in range(i,n): # for each val work frwd looking fot next value in sequence starting at i
+            for j in range(i,n): # for each val work forward looking for next value in sequence starting at i
                 if nums[i] < nums[j]: # we haveteh next number aster nums[i]
                     lis[i] = max(lis[i],lis[j]+1) # sequence length at [i]
         return max(lis)
