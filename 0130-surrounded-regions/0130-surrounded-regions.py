@@ -34,86 +34,20 @@ class Solution:
             for c in range(COLS):
                 if board[r][c] == "O":
                     board[r][c] = "X"
-
-        # 3. Uncapture unsurrounded regions (T -> O)
-        for r in range(ROWS):
-            for c in range(COLS):
-                if board[r][c] == "T":
+                elif board[r][c] == "T":
                     board[r][c] = "O"
+
+        ## 3. Uncapture unsurrounded regions (T -> O)
+        #for r in range(ROWS):
+        #    for c in range(COLS):
+        #        if board[r][c] == "T":
+        #            board[r][c] = "O"
 
 class Solution2:
     def solve2(self, board: List[List[str]]) -> None:
         pass
         
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
+
         
     def solve(self, board: List[List[str]]) -> None:        
         """
