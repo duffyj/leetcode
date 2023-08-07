@@ -13,15 +13,14 @@ task - fip all Os that can be captured to an X.
 class Solution:
     def solve(self, board: List[List[str]]) -> None:
         ROWS, COLS = len(board), len(board[0])
-
+        adjacents = [(1,0), (-1,0) , (0,1), (0,-1)]
+        
         def capture(r, c):
             if r < 0 or c < 0 or r == ROWS or c == COLS or board[r][c] != "O":
                 return
             board[r][c] = "T"
-            capture(r + 1, c)
-            capture(r - 1, c)
-            capture(r, c + 1)
-            capture(r, c - 1)
+            for aR, aC in adjacents:
+                capture(r + aR, c + aC)
 
         # 1. (DFS) Capture unsurrounded regions (O -> T)
         for r in range(ROWS):
