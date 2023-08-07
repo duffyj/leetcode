@@ -1,19 +1,45 @@
 """
 
-task - fip all Os that can be captured to an X.
+Task - fip all Os that can be captured to an X.
      - all O not 4 way adjacent to an border 0 can be captured.
      - if 0 is connected to border O then it is safe and cannot be flipped to an X.
         
     1. Dfs staring at all border squares run dfs marking all safe Os with another char (R?) 
        untouched Os cannot be reached from border and must be flipped to X. Cells with T should actually be O. 
     2. 2nd phase of clean up which will be (n-2) *(m-2) - nothing ot be done here!
-    
-      
-    
-    
+
 """
+class Solution2:
+    def solve(self, board: List[List[str]]) -> None:
+        ROWS, COLS = len(board), len(board[0])
+        adjacents = [(0,1), (0,-1), (1,0),(-1,0)]
+        
+        def capture(r,c):
+            if (r in (0, ROWS) or
+                c in (0, COLS) or
+                board[r][c] != 'O'):
+                    return
+            board[r][c] = 'T'
+            for adjR, adjC in adjacents:
+                capture(r+adjR, c+adjC)
 
-
+        # 1. Search all borders
+        for r in range(ROWS):
+            for c in range(COLS):
+                if (r in (0, ROWS-1) or c in (0, COLS-1)) and board[r][c] == 'O':
+                    capture(r, c)
+                    
+        # 2. Restate correct values
+        for r in range (ROWS):
+            for c in range (COLS):
+                if board[r][c] == 'O':
+                    board[r][c] = 'X'
+                elif board[r][c] == 'T':
+                    board[r][c] = 'O'
+                                  
+   
+        
+        
 class Solution:
     def solve(self, board: List[List[str]]) -> None:
         ROWS, COLS = len(board), len(board[0])
@@ -46,7 +72,9 @@ class Solution:
         #        if board[r][c] == "T":
         #            board[r][c] = "O"
 
-class Solution2:
+
+        
+class SolutionMine:
     def solve2(self, board: List[List[str]]) -> None:
         pass
         
