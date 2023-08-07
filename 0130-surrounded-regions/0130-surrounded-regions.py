@@ -1,5 +1,16 @@
+"""
+
+task - fip all Os that can be captured to an X.
+     - all O not 4 way adjacent to an border 0 can be captured.
+     - if 0 is connected to border O then it is safe and cannot be flipped to an X.
+        
+    Dfs staring at all border squares.
+    mark all safe Os with another char (R?) 
+    2nd phase of clean up which will be (n-2) *(m-2)
+"""
+
 class Solution:
-    def solve(self, board: List[List[str]]) -> None:
+    def solve2(self, board: List[List[str]]) -> None:
         pass
         
         
