@@ -36,6 +36,32 @@ class Solution:
                     board[r][c] = 'X'
                 elif board[r][c] == 'T':
                     board[r][c] = 'O'
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
                                   
 class SolutionLeetcide:
     def solve(self, board: List[List[str]]) -> None:
