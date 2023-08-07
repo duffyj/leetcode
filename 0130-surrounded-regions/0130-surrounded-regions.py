@@ -9,14 +9,14 @@ Task - fip all Os that can be captured to an X.
     2. 2nd phase of clean up which will be (n-2) *(m-2) - nothing ot be done here!
 
 """
-class Solution2:
+class Solution:
     def solve(self, board: List[List[str]]) -> None:
         ROWS, COLS = len(board), len(board[0])
         adjacents = [(0,1), (0,-1), (1,0),(-1,0)]
         
         def capture(r,c):
-            if (r in (0, ROWS) or
-                c in (0, COLS) or
+            if (r in (-1, ROWS) or
+                c in (-1, COLS) or
                 board[r][c] != 'O'):
                     return
             board[r][c] = 'T'
@@ -37,10 +37,7 @@ class Solution2:
                 elif board[r][c] == 'T':
                     board[r][c] = 'O'
                                   
-   
-        
-        
-class Solution:
+class SolutionLeetcide:
     def solve(self, board: List[List[str]]) -> None:
         ROWS, COLS = len(board), len(board[0])
         adjacents = [(1,0), (-1,0) , (0,1), (0,-1)]
@@ -65,15 +62,7 @@ class Solution:
                     board[r][c] = "X"
                 elif board[r][c] == "T":
                     board[r][c] = "O"
-
-        ## 3. Uncapture unsurrounded regions (T -> O)
-        #for r in range(ROWS):
-        #    for c in range(COLS):
-        #        if board[r][c] == "T":
-        #            board[r][c] = "O"
-
-
-        
+                    
 class SolutionMine:
     def solve2(self, board: List[List[str]]) -> None:
         pass
