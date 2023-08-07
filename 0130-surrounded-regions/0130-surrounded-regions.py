@@ -10,7 +10,7 @@ task - fip all Os that can be captured to an X.
 """
 
 
-class Solution2:
+class Solution:
     def solve(self, board: List[List[str]]) -> None:
         ROWS, COLS = len(board), len(board[0])
 
@@ -41,7 +41,7 @@ class Solution2:
                 if board[r][c] == "T":
                     board[r][c] = "O"
 
-class Solution:
+class Solution2:
     def solve2(self, board: List[List[str]]) -> None:
         pass
         
