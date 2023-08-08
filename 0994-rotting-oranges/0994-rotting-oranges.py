@@ -27,10 +27,10 @@ class Solution2:
         minutes = 0
         while True:
             minutes += 1
-            newRotten = []
+            newRotten = set()
             for r,c in remaningFresh:
-                for adjR,adjC in adjacents:
-                    newR, newC = r+adjR, c+adjC
+                for adj in adjacents:
+                    newR, newC = r+adj[0], c+adj[1]
                     # check of any fresh are now rotten
                     if (newR > 0 and
                         newC > 0 and
@@ -39,12 +39,12 @@ class Solution2:
                         grid[newR][newC] == ROTTEN
                        ):
                         grid[r][c] = ROTTEN     # 3.2 mark newly rotton in main array
-                        newRotten.append((r,c))
+                        newRotten.append(adj)
                         break
                     if not newRotten:
                         return -1  # if no change in number of fresh then stop.
                     for toRemove in newRotten:
-                        remaningFresh.remove(toRemove)
+                        remaningFresh.difference_update(toRemove)
         return minutes
                 
                                         
