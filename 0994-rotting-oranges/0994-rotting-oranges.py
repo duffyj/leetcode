@@ -43,8 +43,7 @@ class Solution2:
                         break
                     if not newRotten:
                         return -1  # if no change in number of fresh then stop.
-                    for toRemove in newRotten:
-                        remaningFresh.difference_update(toRemove)
+                    remaningFresh.difference_update(toRemove)
         return minutes
                 
                                         
