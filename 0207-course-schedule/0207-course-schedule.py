@@ -12,23 +12,17 @@
 class Solution:
     def canFinish(self, numCourses: int, prerequisites: List[List[int]]) -> bool:
 
-        schedule = dict()
-        visited = set()
+        schedule,visited = dict(), set()
 
+        for c,p in prerequisites:
+            schedule[c] = schedule.get(c,[]) + [p]
+        
         def istakeable(c):
             if c not in visited:
                 visited.add(c)
-                newPrerequisites = []
-                for p in schedule.get(c,[]):
-                    if not istakeable(p):
-                        newPrerequisites.append(p)
-                schedule[c] = newPrerequisites
+                schedule[c] = [p for p in schedule.get(c,[]) if not istakeable(p)]
             return not schedule[c]
              
-
-        for c,p in  prerequisites:
-            schedule[c] = schedule.get(c,[]) + [p]
-        
         for c in range(numCourses):
             if istakeable(c):
                 numCourses-= 1
