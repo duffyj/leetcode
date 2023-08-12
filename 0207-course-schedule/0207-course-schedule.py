@@ -24,9 +24,9 @@ class Solution:
             return not schedule[c]
              
         for c in range(numCourses):
-            if istakeable(c):
-                numCourses-= 1
+            if not istakeable(c):
+                return False
         
-        return numCourses <= 0
+        return True
  
 
