@@ -1,9 +1,15 @@
 
 
-
+class Solution:
+    def maxProfit(self, prices: List[int]) -> int:
+        minS, maxP = prices[0], 0
+        for p in prices:
+            maxP = max(maxP,p - minS)
+            minS = min(minS, p)
+        return maxP
 
 from sys import maxsize
-class Solution:
+class SolutioOrifn:
     def maxProfit(self, prices: List[int]) -> int:
         currMinimum = sys.maxsize
         maxProfit = 0
