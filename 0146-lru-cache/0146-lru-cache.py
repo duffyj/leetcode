@@ -54,8 +54,6 @@ class LRUCache():
         self.head = None
         self.tail = None
 
-
-
     def show(self):
         print( 'h', (self.head.k,self.head.v)   if self.head.v else '')
         print( 't', (self.tail.k,self.tail.v) if self.tail.v else '')
@@ -69,12 +67,12 @@ class LRUCache():
         print((all,list(self.map.keys())))
 
 
+
     def moveNodeToHead(self,node):
         if self.head != node:
             parentNode = node.prev
             childNode = node.next
-            parentNode.next = childNode
-            #parentNode.prev = node            
+            parentNode.next = childNode      
             if childNode:
                 childNode.prev = parentNode
             else:
@@ -90,7 +88,6 @@ class LRUCache():
             return self.head.v
         return -1
 
-
     def put(self, key, value):
         if node := self.map.get(key):
              self.moveNodeToHead(node)
@@ -103,7 +100,6 @@ class LRUCache():
         if not self.tail:
             self.tail = newNode
         self.map[key] = newNode
-        print(('Cap: ',self.count,self.capacity))
         if self.count +1 <=  self.capacity:
             self.count+=1
             return 
@@ -116,71 +112,28 @@ class LRUCache():
         tail.prev = None
         self.tail = prevTail
 
-class NodeOLD():
-    def __init__(self, key=None,value=None, prev=None, next=None):
-        self.key = key
-        self.value = value
-        self.next = next
-        self.prev = prev
 
 
+def test1():
 
-class LRUCacheSlow:
+    lurc = LRUCache(2)
+    lurc.put('A',1)
+    lurc.show()     
+    lurc.put('B',2)
+    lurc.show()     
+    lurc.put('C',3)
+    lurc.show()    
+    lurc.put('B','**')
+    lurc.show()       
+    lurc.put('D',4)
+    lurc.show()     
+    lurc.put('A','##')
+    lurc.show()         
+    lurc.get('D')
+    lurc.show()        
 
-    def __init__(self, capacity: int):
-        self.capacity = capacity
-        self.size = 0
-        self.head = Node()
-        self.tail = self.head
-        
-    def find(self, key: int) -> int:
-            toSearch = self.head
-            while toSearch.next:
-                toSearch = toSearch.next
-                if toSearch.key == key:
-                    return toSearch
 
-    def remove(self, node):
-        nxt, prev = node.next, node.prev
-        if node.prev:
-            node.prev.next = nxt
-        if node.next:
-            node.next.prev = prev
-        else:
-            self.tail = prev
-        
-
-    def append(self, key, value):
-        self.tail.next = Node(key,value,self.tail,None)
-        self.tail = self.tail.next
-            
-    def get(self, key: int) -> int:
-        node = self.find(key)
-        if node is None:
-            return -1
-        self.remove(node)
-        self.append(key,node.value)
-        return node.value
-    
-    def put(self, key: int, value: int) -> None:
-        node = self.find(key)
-        if node != None:
-            self.remove(node)
-            self.append(key,value)
-            return
-        if self.size == self.capacity:
-            if self.tail == self.head.next:
-                self.tail = self.head
-
-            self.head.next = self.head.next.next
-            if self.head.next:
-                self.head.next.prev = self.head
-        else:
-            self.size +=1  
-        self.append(key,value)
-
-          
-
+test1()
 
         
 
