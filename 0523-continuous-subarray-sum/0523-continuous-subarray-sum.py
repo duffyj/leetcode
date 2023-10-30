@@ -5,7 +5,8 @@ class Solution:
         for i,n in enumerate(nums):
             total += n
             remian = total % k
-            if remian in seen and (i - seen[remian]) > 1:
-                return True
             if remian not in seen:
-                seen[remian]  = i
+                seen[remian]  = i            
+            elif (i - seen[remian]) > 1:
+                return True
+            
