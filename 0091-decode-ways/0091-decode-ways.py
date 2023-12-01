@@ -1,7 +1,114 @@
-class Solution3:
+"""
+1212
+
+i   = {1}
+n-1    2  dp[i-1] + 0        
+n-2    1  dp[i-1] + dp[i-2]
+n-3    2  dp[i-1] + dp[i-2]
+n-4    1  dp[i-1] + dp[i-2]
+
+
+i   = {1}
+n-1    2  dp[i-1] + 0        
+n-2    1  dp[i-1] + dp[i-2]
+n-3    8  dp[i-1] 
+n-4    1  dp[i-1] + dp[i-2]
+
+"""
+
+class Solution:
+    def numDecodings2(self, s: str) -> int:  
+        n = len(s)
+        dp = {n : 1}
+
+        for i in range(n-1,-1,-1):
+            d = s[i]
+            if d == "0":
+                dp[i] = 0
+            else:
+                dp[i] = dp[i+1]
+                if (i < len(s) -1):
+                    v =  (int(s[i]) * 10 + int(s[i+1])) 
+                    if 0 <  v <=26:
+                        dp[i] += dp[i+2]
+        return dp[0]
+
+    def numDecodings(self, s: str) -> int:  
+        S = s
+        """
+        @param S: str
+        @return: int
+        """
+        n = len(S)
+        dp = {n:1}
+        
+        for i in range(n-1,-1,-1):
+            d = S[i]
+            if d == "0":
+                dp[i] = 0
+            else:
+                dp[i] = dp[i+1-1]
+            if i < n -1 :
+                v = int(S[i]) * 10 + int(S[i+1])
+                if 0 < v <= 26:
+                    dp[i] += dp[i+2]
+        return dp[0]
+"""
+1212
+
+i   = {1}
+n-1    2  dp[i-1] + 0        
+n-2    1  dp[i-1] + dp[i-2]
+n-3    2  dp[i-1] + dp[i-2]
+n-4    1  dp[i-1] + dp[i-2]
+
+
+i   = {1}
+n-1    2  dp[i-1] + 0        
+n-2    1  dp[i-1] + dp[i-2]
+n-3    8  dp[i-1] 
+n-4    1  dp[i-1] + dp[i-2]
+
+
+
+class Solution:
+    def numDecodings(self, s: str) -> int:  
+        S = s
+        n = len(S)
+        dp = {n:1}
+        
+        for i in range(n-1,-1,-1):
+            d = S[i]
+            dp[i] = 0
+            if d == "1":
+                dp[i] += dp[i-1]
+            elif d == "2" and S[i-1] in "0123456":
+                dp[i] += dp[i-2]
+        return dp[0]
+"""
+
+class Solution:
+    def numDecodings(self, s: str) -> int:  
+        n = len(s)
+        dp = {n : 1}
+
+        for i in range(n-1,-1,-1):
+            d = s[i]
+            if d == "0":
+                dp[i] = 0
+            else:
+                dp[i] = dp[i+1]
+                if (i < len(s) -1):
+                    v =  (int(s[i]) * 10 + int(s[i+1])) 
+                    if 0 <  v <=26:
+                        dp[i] += dp[i+2]
+        return dp[0]
+
+class Solution2:
     def numDecodings(self, s: str) -> int:  
         def isLetter(b2,b1):
-            return s[b2] in "012" and s[b1] in "123456"
+            return s[b2] == "1"  or (s[b2] == "2"  and s[b1] in "123456")
+            #return s[b2] in "012" and s[b1] in "123456"
         backOne,backTwo = 1,1
         for i in range(len(s)-1,-1,-1):
             newCurr = backOne if s[i] != "0" else 0
@@ -10,7 +117,7 @@ class Solution3:
             backTwo, backOne = backOne, newCurr
         return backOne
 
-class Solution:
+class Solution2:
     def numDecodings(self, s: str) -> int:  
         dp = {len(s) : 1}
         def isLetter(b2,b1):
@@ -20,9 +127,9 @@ class Solution:
 
         for i in range(len(s)-1,-1,-1):
             if s[i] == "0":
-                dp[i]  = 0
+                dp[i]  = 0   # zero does not change anythibng 
             else:
-                dp[i] = dp[i+1]
+                dp[i] = dp[i+1]   # 
             if (i < len(s) -1) and isLetter(s[i],s[i+1]):
                 dp[i] += dp[i+2]
         return dp[0]
