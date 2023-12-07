@@ -146,3 +146,37 @@ class Solution2:
                     l_min, r_min = start, i
 
         return s[l_min:r_min + 1] if r_min != float('inf') else ''
+
+"""
+PRAMS
+Smallest Substring of All Characters
+
+def get_shortest_unique_substring(arr, str):
+  l = 0
+  n  = len(str)
+  count = {c : 0 for c in arr}
+  enoughCount = set()
+  resultSize = sys.maxsize
+  result = ""
+  for r,c in enumerate(str):
+    if c in count:
+      count[c] = count.get(c,0) + 1
+      enoughCount.add(c)
+    while len(enoughCount) == len(arr):
+      # valid substring 
+      swLen = r - l +1
+      if swLen < resultSize:
+        resultSize = swLen
+        result = str[l:r+1]
+      if str[l] in count:
+        count[str[l]] -=1
+        if count[str[l]] == 0:
+          enoughCount.remove(str[l])
+      l += 1
+
+  return result
+
+def main(): 
+  x = get_shortest_unique_substring(["x","y","z"], "xyyzyzyx")
+  print(X)
+  """
